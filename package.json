@@ -1,0 +1,17 @@
+{
+  "name": "scapholdNativeStarterKit",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "babel-preset-react-native": "^1.8.0",
+    "babel-relay-plugin": "^0.8.1",
+    "react": "^0.14.8",
+    "react-native": "^0.25.1",
+    "react-native-button": "^1.6.0",
+    "react-relay": "^0.8.1",
+    "sync-request": "^3.0.1"
+  }
+}
