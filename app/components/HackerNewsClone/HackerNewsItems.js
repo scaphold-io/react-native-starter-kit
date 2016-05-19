@@ -26,9 +26,9 @@ class HackerNewsItems extends React.Component {
 
     let items = this.props.allHackerNewsItems.edges.map(
       (hnItem, idx) => 
-        <TouchableHighlight onPress={() => this._pressRow()}>
+        <TouchableHighlight onPress={() => this._pressRow()} key={idx}>
           <View style={styles.row}>
-            <HackerNewsItem hnItem={hnItem} num={idx} key={idx} />
+            <HackerNewsItem hnItem={hnItem} num={idx} />
           </View>
         </TouchableHighlight>
     );
