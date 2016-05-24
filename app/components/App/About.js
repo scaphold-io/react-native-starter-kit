@@ -21,9 +21,6 @@ export default class About extends React.Component {
   }
 
   render() {
-    console.log("About.props");
-    console.log(this.props);
-
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.section}>React-Native</Text>
@@ -39,22 +36,8 @@ export default class About extends React.Component {
 
 export default Relay.createContainer(About, {
   initialVariables: {
-    // userID: null
   },
   fragments: {
-    // user: (variables) => Relay.QL `
-    //   fragment on UserQuerySet {
-    //     get (id: $userID) {
-    //       id,
-    //       credentials {
-    //         basic {
-    //           email
-    //         }
-    //       },
-    //       createdAt
-    //     }
-    //   }
-    // `
   }
 });
 
@@ -66,14 +49,12 @@ const styles = StyleSheet.create({
     paddingLeft: 20
   },
   section: {
-    // alignSelf: 'center',
     color: 'black',
     fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
     fontSize: 30,
     fontWeight: 'bold',
   },
   body: {
-    // alignSelf: 'center',
     fontSize: 20,
     fontWeight: '200',
     marginTop: 10,

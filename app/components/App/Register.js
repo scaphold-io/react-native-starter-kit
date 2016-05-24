@@ -24,26 +24,19 @@ class Register extends React.Component {
 	}
 
 	registerUser() {
-		console.log("REGISTER");
-		console.log(this);
-
 		Auth.register(this.state.registerEmail, this.state.registerPassword)
 	      .then((result) => {
-	        config.userToken = result.loginUser.token;
-
 	        let loggedInUser = {
 	        	id: result.loginUser.id,
-	        	userToken: config.userToken,
+	        	scapholdAuthToken: result.loginUser.token,
 	        	email: this.state.registerEmail
 	        };
 
 	        AsyncStorage.setItem("currentUser", JSON.stringify(loggedInUser), () => {
-			  // AsyncStorage.mergeItem("currentUser", JSON.stringify(UID123_delta), () => {
 			    AsyncStorage.getItem("currentUser", (err, res) => {
 			      	const newRoute = navigatorRoutes.homeNavigatorRoute({email: loggedInUser.email});
 	       			this.props.navigator.push(newRoute);
 			    });
-			  // });
 			});
 	      }).catch((error) => {
 	        this.setState({errors: "Error: " + error});
@@ -56,8 +49,6 @@ class Register extends React.Component {
 		this.state.registerPassword = text;
 	}
 	render() {
-		console.log("Register.props");
-		console.log(this.props);
 		return (
 			<View>
 				<Text style={styles.formTitle}>Register Here!</Text>

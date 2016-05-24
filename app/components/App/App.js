@@ -43,9 +43,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log("App.props");
-    console.log(this.props);
-
     var registerOrLogin;
     var switchText;
     if (this.state.showRegister) {

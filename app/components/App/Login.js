@@ -24,26 +24,19 @@ class Login extends React.Component {
 	}
 
 	loginUser() {
-		console.log("LOGIN");
-		console.log(this);
-
 		Auth.login(this.state.loginEmail, this.state.loginPassword)
 	      .then((result) => {
-	        config.userToken = result.loginUser.token;
-
 	        let loggedInUser = {
 	        	id: result.loginUser.id,
-	        	userToken: config.userToken,
+	        	scapholdAuthToken: result.loginUser.token;,
 	        	email: this.state.loginEmail
 	        };
 
 	        AsyncStorage.setItem("currentUser", JSON.stringify(loggedInUser), () => {
-			  // AsyncStorage.mergeItem("currentUser", JSON.stringify(UID123_delta), () => {
 			    AsyncStorage.getItem("currentUser", (err, res) => {
 			      	const newRoute = navigatorRoutes.homeNavigatorRoute({email: loggedInUser.email});
 	       			this.props.navigator.push(newRoute);
 			    });
-			  // });
 			});
 	      }).catch((error) => {
 	        this.setState({errors: "Error: " + error});
@@ -56,8 +49,6 @@ class Login extends React.Component {
 		this.state.loginPassword = text;
 	}
 	render() {
-		console.log("Login.props");
-		console.log(this.props);
 		return (
 			<View>
 				<Text style={styles.formTitle}>Login Here!</Text>

@@ -8,8 +8,6 @@ export default class Home extends React.Component {
     super(props, context);
   }
   render() {
-    console.log("Home.props");
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <Text>{this.props.user}</Text>

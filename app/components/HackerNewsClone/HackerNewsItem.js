@@ -4,9 +4,6 @@ import { StyleSheet, View, Text } from 'react-native';
 
 class HackerNewsItem extends React.Component {
   render() {
-    console.log("HackerNewsItem.props");
-    console.log(this.props);
-
     let item = this.props.hnItem.node;
     let time = new Date(item.createdAt);
     time = time.toString();

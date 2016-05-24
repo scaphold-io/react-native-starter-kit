@@ -17,13 +17,10 @@ class HackerNewsItems extends React.Component {
   }
 
   _pressRow() {
-    console.log("PRESSED!");
+    // console.log("PRESSED!");
   }
 
   render() {
-    console.log("HackerNewsItems.props");
-    console.log(this.props);
-
     let items = this.props.allHackerNewsItems.edges.map(
       (hnItem, idx) => 
         <TouchableHighlight onPress={() => this._pressRow()} key={idx}>
@@ -49,8 +46,6 @@ export default Relay.createContainer(HackerNewsItems, {
 
 var styles = StyleSheet.create({
   row: {
-    // flexDirection: 'row',
-    // justifyContent: 'center',
     padding: 10,
     backgroundColor: '#F6F6F6',
   },

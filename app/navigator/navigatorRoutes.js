@@ -9,7 +9,6 @@ import HomeRoute from './../routes/HomeRoute';
 
 export function appNavigatorRoute() {
   return {
-    // title: 'App',
     // App is a Relay.Container
     Component: App,
     queryConfig: new AppRoute()
@@ -18,9 +17,9 @@ export function appNavigatorRoute() {
 
 export function aboutNavigatorRoute() {
   return {
+    // About is a Relay.Container
     title: 'About',
     leftButton: 'Back',
-    // App is a Relay.Container
     Component: About,
     queryConfig: new AboutRoute()
   };
@@ -28,9 +27,9 @@ export function aboutNavigatorRoute() {
 
 export function homeNavigatorRoute(email) {
   return {
+    // Home is a Relay.Container
     title: 'HackerNews Clone',
     rightButton: 'Logout',
-    // Home is a Relay.Container
     Component: Home,
     queryConfig: new HomeRoute({email: email.email, orderBy: '-createdAt'})
   };

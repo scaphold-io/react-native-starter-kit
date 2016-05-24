@@ -20,13 +20,15 @@ import App from './components/App/App';
 import AppRoute from './routes/AppRoute';
 import {appNavigatorRoute} from './navigator/navigatorRoutes';
 
-Relay.injectNetworkLayer(
-  new Relay.DefaultNetworkLayer(config.scapholdUrl, {
-    headers: {
-      Authorization: 'Bearer ' + config.userToken
-    },
-  })
-);
+AsyncStorage.getItem("currentUser", (err, res) => {
+  Relay.injectNetworkLayer(
+    new Relay.DefaultNetworkLayer(config.scapholdUrl, {
+      headers: {
+        Authorization: 'Bearer ' + res.scapholdAuthToken
+      },
+    })
+  );
+});
 
 var NavigationBarRouteMapper = { 
   LeftButton: function( route, navigator, index, navState ){

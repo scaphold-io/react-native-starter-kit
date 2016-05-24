@@ -8,6 +8,6 @@ Quickstart:
 
 2) Create an account and dataset.
 
-3) Change the URL in the API manager in the boilerplate to point to your unique Scaphold.io API URL.
+3) Change the URL in the API manager (config.js) in the boilerplate to point to your unique Scaphold.io API URL.
 
 4) Run with: Xcode or Android Studio
