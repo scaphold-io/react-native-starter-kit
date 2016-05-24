@@ -10,6 +10,7 @@ import * as Auth from './../../auth/Auth';
 import * as navigatorRoutes from './../../navigator/navigatorRoutes';
 import LoginMutation from './../../mutations/LoginMutation';
 import config from './../../../config';
+import * as AppBase from './../../app';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -28,12 +29,13 @@ class Login extends React.Component {
 	      .then((result) => {
 	        let loggedInUser = {
 	        	id: result.loginUser.id,
-	        	scapholdAuthToken: result.loginUser.token;,
+	        	scapholdAuthToken: result.loginUser.token,
 	        	email: this.state.loginEmail
 	        };
 
 	        AsyncStorage.setItem("currentUser", JSON.stringify(loggedInUser), () => {
 			    AsyncStorage.getItem("currentUser", (err, res) => {
+			    	AppBase.setNetworkLayer();
 			      	const newRoute = navigatorRoutes.homeNavigatorRoute({email: loggedInUser.email});
 	       			this.props.navigator.push(newRoute);
 			    });

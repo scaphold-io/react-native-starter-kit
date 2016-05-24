@@ -95,22 +95,8 @@ export default class App extends React.Component {
 
 export default Relay.createContainer(App, {
   initialVariables: {
-    userID: null
   },
   fragments: {
-    user: (variables) => Relay.QL `
-      fragment on UserQuerySet {
-        get (id: $userID) {
-          id,
-          credentials {
-            basic {
-              email
-            }
-          },
-          createdAt
-        }
-      }
-    `
   }
 });
 

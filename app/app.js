@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { 
+  AsyncStorage,
   AppRegistry,
   Image,
   StyleSheet,
@@ -20,15 +21,26 @@ import App from './components/App/App';
 import AppRoute from './routes/AppRoute';
 import {appNavigatorRoute} from './navigator/navigatorRoutes';
 
-AsyncStorage.getItem("currentUser", (err, res) => {
-  Relay.injectNetworkLayer(
-    new Relay.DefaultNetworkLayer(config.scapholdUrl, {
-      headers: {
-        Authorization: 'Bearer ' + res.scapholdAuthToken
-      },
-    })
-  );
-});
+export function setNetworkLayer() {
+  AsyncStorage.getItem("currentUser", (err, res) => {
+    var token;
+    if (res) {
+      token = res.scapholdAuthToken;
+    }
+    else {
+      token = "";
+    }
+    Relay.injectNetworkLayer(
+      new Relay.DefaultNetworkLayer(config.scapholdUrl, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        },
+      })
+    );
+  });
+}
+
+setNetworkLayer();
 
 var NavigationBarRouteMapper = { 
   LeftButton: function( route, navigator, index, navState ){
@@ -48,7 +60,12 @@ var NavigationBarRouteMapper = {
   RightButton: function( route, navigator, index, navState ){
     return(
       <TouchableOpacity
-        onPress={() => navigator.pop()}
+        onPress={() => {
+          AsyncStorage.removeItem("currentUser", (err, res) => {
+            setNetworkLayer();
+            navigator.pop();
+          })
+        }}
         style={styles.navBarRightButton}>
         <Text style={[styles.navBarText, styles.navBarButtonText]}>{ route.rightButton }</Text>
       </TouchableOpacity>

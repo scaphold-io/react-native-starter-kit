@@ -10,6 +10,7 @@ import * as Auth from './../../auth/Auth';
 import * as navigatorRoutes from './../../navigator/navigatorRoutes';
 import RegisterMutation from './../../mutations/RegisterMutation';
 import config from './../../../config';
+import * as AppBase from './../../app';
 
 class Register extends React.Component {
 	constructor(props) {
@@ -34,6 +35,7 @@ class Register extends React.Component {
 
 	        AsyncStorage.setItem("currentUser", JSON.stringify(loggedInUser), () => {
 			    AsyncStorage.getItem("currentUser", (err, res) => {
+			    	AppBase.setNetworkLayer();
 			      	const newRoute = navigatorRoutes.homeNavigatorRoute({email: loggedInUser.email});
 	       			this.props.navigator.push(newRoute);
 			    });
