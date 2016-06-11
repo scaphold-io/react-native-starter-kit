@@ -35,9 +35,10 @@ class Register extends React.Component {
 
 	        AsyncStorage.setItem("currentUser", JSON.stringify(loggedInUser), () => {
 			    AsyncStorage.getItem("currentUser", (err, res) => {
-			    	AppBase.setNetworkLayer();
-			      	const newRoute = navigatorRoutes.homeNavigatorRoute({email: loggedInUser.email});
-	       			this.props.navigator.push(newRoute);
+			    	AppBase.setNetworkLayer().then((res) => {
+			    		const newRoute = navigatorRoutes.homeNavigatorRoute({email: loggedInUser.email});
+	       				this.props.navigator.push(newRoute);
+			    	});
 			    });
 			});
 	      }).catch((error) => {

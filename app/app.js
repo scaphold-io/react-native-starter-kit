@@ -22,25 +22,25 @@ import AppRoute from './routes/AppRoute';
 import {appNavigatorRoute} from './navigator/navigatorRoutes';
 
 export function setNetworkLayer() {
-  AsyncStorage.getItem("currentUser", (err, res) => {
-    var token;
-    if (res) {
-      token = res.scapholdAuthToken;
-    }
-    else {
-      token = "";
-    }
-    Relay.injectNetworkLayer(
-      new Relay.DefaultNetworkLayer(config.scapholdUrl, {
-        headers: {
-          Authorization: 'Bearer ' + token
-        },
-      })
-    );
-  });
+  return new Promise((resolve, reject) => {
+    AsyncStorage.getItem("currentUser", (err, res) => {
+      var store = JSON.parse(res);
+      var options = {};
+      if (store) {
+        options.headers = {
+          Authorization: 'Bearer ' + store.scapholdAuthToken
+        }
+      }
+      else {
+        options.headers = {};
+      }
+      Relay.injectNetworkLayer(
+        new Relay.DefaultNetworkLayer(config.scapholdUrl, options)
+      );
+      resolve(options);
+    });
+  })
 }
-
-setNetworkLayer();
 
 var NavigationBarRouteMapper = { 
   LeftButton: function( route, navigator, index, navState ){
@@ -96,6 +96,10 @@ export default class HackerNewsApp extends React.Component {
 
   componentWillMount() {
     var navigator = this.props.navigator;
+  }
+
+  componentDidMount() {
+    setNetworkLayer();
   }
 
   render() {
