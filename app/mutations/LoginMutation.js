@@ -15,7 +15,7 @@ export default class LoginMutation extends Relay.Mutation {
 
   getVariables() {
     return {
-      email: this.props.input.email,
+      username: this.props.input.username,
       password: this.props.input.password
     };
   }

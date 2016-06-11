@@ -37,12 +37,7 @@ export default Relay.createContainer(Home, {
                 url,
                 author {
                   id,
-                  credentials {
-                    basic {
-                      email,
-                      password
-                    }
-                  }
+                  username
                 }
               }
             }

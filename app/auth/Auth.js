@@ -2,20 +2,17 @@ import Relay from 'react-relay';
 import RegisterMutation from './../mutations/RegisterMutation';
 import LoginMutation from './../mutations/LoginMutation';
 
-export function register(email, password) {
+export function register(username, password) {
   return new Promise((resolve, reject) => {
     Relay.Store.commitUpdate(new RegisterMutation({
-      credentials: {
-        basic: {
-          email: email,
-          password: password
-        }
+      input: {
+        username: username,
+        password: password
       },
       user: null
     }), {
       onSuccess: (data) => {
-        var basicCredentials = data.createUser.changedUser.credentials.basic;
-        resolve(login(email, password));
+        resolve(login(username, password));
       },
       onFailure: (transaction) => {
         reject(transaction.getError().message);
@@ -24,11 +21,11 @@ export function register(email, password) {
   })
 }
 
-export function login(email, password) {
+export function login(username, password) {
   return new Promise((resolve, reject) => {
     Relay.Store.commitUpdate(new LoginMutation({
       input: {
-        email: email,
+        username: username,
         password: password
       },
       user: null

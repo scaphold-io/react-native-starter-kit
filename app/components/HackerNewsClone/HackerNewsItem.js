@@ -11,7 +11,7 @@ class HackerNewsItem extends React.Component {
     return (
       <View>
         <Text style={styles.index}>{this.props.num + 1}. {item.title}</Text>
-        <Text>{item.score} points by {item.author.credentials.basic.email}</Text>
+        <Text>{item.score} points by {item.author.username}</Text>
         <Text>at {time}</Text>
       </View>
     );
