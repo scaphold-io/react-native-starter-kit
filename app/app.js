@@ -73,7 +73,7 @@ var NavigationBarRouteMapper = {
   }
 }
 
-export default function renderRelayScene(route, navigator) {
+export function renderRelayScene(route, navigator) {
   const { title, Component, queryConfig } = route;
   return (
     <Relay.RootContainer
