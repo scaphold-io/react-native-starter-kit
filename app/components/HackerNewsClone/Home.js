@@ -3,7 +3,7 @@ import Relay from 'react-relay';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import HackerNewsItems from './HackerNewsItems';
 
-export default class Home extends React.Component {
+export class Home extends React.Component {
   constructor(props, context) {
     super(props, context);
   }

@@ -13,7 +13,7 @@ import * as navigatorRoutes from './../../navigator/navigatorRoutes';
 import Register from './Register';
 import Login from './Login';
 
-export default class About extends React.Component {
+export class About extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
