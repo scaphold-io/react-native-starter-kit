@@ -2,10 +2,10 @@ import React, {
 	PropTypes,
 } from 'react';
 import {
-	StyleSheet, AsyncStorage, View, Text, TextInput
+	StyleSheet, AsyncStorage, View, Text, Platform
 } from 'react-native';
 import Relay from 'react-relay';
-import Button from 'react-native-button';
+import {Button, FormInput, FormLabel } from 'react-native-elements';
 import * as Auth from './../../auth/Auth';
 import * as navigatorRoutes from './../../navigator/navigatorRoutes';
 import LoginMutation from './../../mutations/LoginMutation';
@@ -53,28 +53,42 @@ class Login extends React.Component {
 	render() {
 		return (
 			<View>
-				<Text style={styles.formTitle}>Login Here!</Text>
-				<TextInput
-					style={styles.form}
-					placeholder=" Email"
-					onChangeText={this._handleLoginEmailChange}
-			        onSubmitEditing={this.loginUser}
-			    />
-			    <TextInput
-					style={styles.form}
-					placeholder=" Password"
-					onChangeText={this._handleLoginPasswordChange}
-			        onSubmitEditing={this.loginUser}
-			        secureTextEntry={true}
-			    />
-			    <Button
-		          style={styles.submitButton}
-		          styleDisabled={{color: 'red'}}
-		          onPress={this.loginUser}
-		        >
-		          Let's Go!
-		        </Button>
+			<View style={{marginBottom: 25, flex: 1}}>
+				<FormLabel>Username</FormLabel>
+				<FormInput
+							placeholder="rep@cheddr.com"
+							onChangeText={this._handleLoginEmailChange}
+							onSubmitEditing={() => {this.password.focus()}}
+							onFocus={this.shrinkHeaders}
+							returnKeyType='next'
+							keyboardType='email-address'
+							clearButtonMode='while-editing'
+							enablesReturnKeyAutomatically
+							autoCapitalize="none"
+							inputStyle={Platform.OS === 'android' ? styles.android : styles.iOS}
+
+					/>
+				<FormLabel>Pasword</FormLabel>
+				<FormInput
+						placeholder="******"
+						onChangeText={this._handleLoginPasswordChange}
+						onSubmitEditing={this.loginUser}
+						secureTextEntry={true}
+						returnKeyType='go'
+						clearButtonMode='while-editing'
+						enablesReturnKeyAutomatically
+						onFocus={this.shrinkHeaders}
+						textInputRef={(view) => this.password = view}
+						inputStyle={Platform.OS === 'android' ? styles.android : styles.iOS}
+				/>
 			</View>
+			<Button
+					raised
+					onPress={this.loginUser}
+					title="Sign In"
+					backgroundColor={'#008650'}
+			/>
+	</View>
 		);
 	}
 }

@@ -5,7 +5,7 @@ import {
 	StyleSheet, AsyncStorage, View, Text, TextInput
 } from 'react-native';
 import Relay from 'react-relay';
-import Button from 'react-native-button';
+import {Button} from 'react-native-elements';
 import * as Auth from './../../auth/Auth';
 import * as navigatorRoutes from './../../navigator/navigatorRoutes';
 import RegisterMutation from './../../mutations/RegisterMutation';
@@ -68,13 +68,11 @@ class Register extends React.Component {
 			        onSubmitEditing={this.registerUser}
 			        secureTextEntry={true}
 			    />
-			    <Button
-		          style={styles.submitButton}
-		          styleDisabled={{color: 'red'}}
-		          onPress={this.registerUser}
-		        >
-		          Let's Go!
-		        </Button>
+					<Button
+		          title='Sign Up'
+		          onPress={this.loginUser}
+							backgroundColor='#008650'
+		        />
 			</View>
 		);
 	}

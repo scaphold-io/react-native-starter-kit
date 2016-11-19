@@ -8,7 +8,7 @@ import {
   ScrollView,
   Linking
 } from 'react-native';
-import Button from 'react-native-button';
+import{ Button } from 'react-native-elements';
 import * as navigatorRoutes from './../../navigator/navigatorRoutes';
 import Register from './Register';
 import Login from './Login';
