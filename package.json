@@ -1,5 +1,5 @@
 {
-  "name": "cheddr",
+  "name": "scapholdNativeStarterKit",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,22 +7,11 @@
   },
   "dependencies": {
     "babel-preset-react-native": "^1.8.0",
-    "babel-relay-plugin": "^0.9.3",
-    "native-base": "^0.5.11",
-    "react": "~15.3.0",
-    "react-native": "^0.34.1",
-    "react-native-animatable": "^0.6.1",
-    "react-native-aws3": "0.0.2",
-    "react-native-drawer": "^2.3.0",
-    "react-native-elements": "^0.6.2",
-    "react-native-image-picker": "^0.23.0",
-    "react-native-interactive-avatar": "^1.0.7",
-    "react-native-material-ui": "^1.4.0",
-    "react-native-md-dialog": "^0.1.7",
-    "react-native-selectme": "^1.2.0",
-    "react-native-vector-icons": "^3.0.0",
-    "react-relay": "^0.9.3",
-    "react-timer-mixin": "^0.13.3",
+    "babel-relay-plugin": "^0.8.1",
+    "react": "^0.14.8",
+    "react-native": "^0.25.1",
+    "react-native-button": "^1.6.0",
+    "react-relay": "^0.8.1",
     "sync-request": "^3.0.1"
   }
 }

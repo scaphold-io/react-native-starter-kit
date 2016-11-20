@@ -6,10 +6,9 @@ import {
   Text,
   View,
   ScrollView,
-  Linking,
-  Image
+  Linking
 } from 'react-native';
-import {Button} from 'react-native-elements';
+import Button from 'react-native-button';
 import * as navigatorRoutes from './../../navigator/navigatorRoutes';
 import Register from './Register';
 import Login from './Login';
@@ -18,7 +17,7 @@ export class App extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      showRegister: false
+      showRegister: true
     };
     this._switchLoginOrRegister = this._switchLoginOrRegister.bind(this);
     this.openAbout = this.openAbout.bind(this);
@@ -36,11 +35,11 @@ export class App extends React.Component {
   }
 
   openScaphold() {
-    Linking.openURL("https://cheddr.com").catch(err => console.error('An error occurred', err));
+    Linking.openURL("https://scaphold.io").catch(err => console.error('An error occurred', err));
   }
 
   openSlack() {
-    Linking.openURL("https://cheddr.slack.com/").catch(err => console.error('An error occurred', err));
+    Linking.openURL("https://scapholdslackin.herokuapp.com/").catch(err => console.error('An error occurred', err));
   }
 
   render() {
@@ -57,29 +56,38 @@ export class App extends React.Component {
 
     return (
       <ScrollView style={styles.container}>
-        <Image source={require('../../img/Cheddr-BELOW-Green.png')} resizeMode="contain" style={{margin: 15, width: 125, alignSelf: 'center', height: 125}} />
+        <Text style={styles.header}>Welcome!</Text>
+        <Text style={styles.subtitle}>Scaphold.io's React-Native Relay Template</Text>
         {registerOrLogin}
         <Button
-          textStyle={styles.formSwitchButton}
+          style={styles.formSwitchButton}
+          styleDisabled={{color: 'red'}}
           onPress={this._switchLoginOrRegister}
-          title={switchText}
-          backgroundColor='transparent'
-        />
+        >
+          {switchText}
+        </Button>
         <View style={styles.spacing}></View>
-
         <Button
-          small
+          style={styles.listItem}
+          styleDisabled={{color: 'red'}}
+          onPress={this.openAbout}
+        >
+          About
+        </Button>
+        <Button
+          style={styles.listItem}
+          styleDisabled={{color: 'red'}}
           onPress={this.openScaphold}
-          title='Learn More!'
-          backgroundColor='#fdb729'
-        />
+        >
+          Learn More!
+        </Button>
         <Button
-        small
+          style={styles.listItem}
+          styleDisabled={{color: 'red'}}
           onPress={this.openSlack}
-          backgroundColor='#427abc'
-          buttonStyle={{marginTop: 5}}
-          title='Slack Community'
-        />
+        >
+          Slack Community
+        </Button>
       </ScrollView>
     );
   }
@@ -96,7 +104,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5F5F5',
     flex: 1,
-    paddingTop: 15
+    paddingTop: Platform.OS === 'android' ? undefined : 60,
   },
   header: {
     alignSelf: 'center',
